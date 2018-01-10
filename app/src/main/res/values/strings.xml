@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Listy</string>
+    <string name="todo_list">Task</string>
+    <string name="completed_list">Completed</string>
+    <string name="priority_prompt">Task Priority</string>
+    <string name="sort_priority">Sort by priority</string>
+    <string name="sort_due_date">Sort by due date</string>
+    <string-array name="priority_array">
+        <item>NONE</item>
+        <item>LOW</item>
+        <item>MEDIUM</item>
+        <item>HIGH</item>
+    </string-array>
+    <string-array name="sort_by_array">
+        <item>Priority</item>
+        <item>Due Date</item>
+    </string-array>
+</resources>
