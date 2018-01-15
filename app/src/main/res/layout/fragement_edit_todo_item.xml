@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_dialog_todo_item"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:padding="16dp"
     android:minWidth="350dp"
     android:minHeight="300dp"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginRight="22dp"
+        android:padding="16dp"
         android:orientation="horizontal">
         <ImageButton
             android:id="@+id/taskImageButton"
@@ -33,10 +32,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:layout_marginLeft="22dp"
+        android:padding="16dp"
         android:orientation="horizontal">
-
         <ImageButton
             android:id="@+id/date_icon"
             android:src="@drawable/ic_date_range_black_24dp"
@@ -56,8 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="22dp"
-        android:layout_marginLeft="22dp">
+        android:padding="16dp">
         <ImageButton
             android:id="@+id/iBtnPriority"
             android:src="@drawable/ic_flag_black_24dp"
@@ -77,8 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="22dp"
-        android:layout_marginLeft="22dp">
+        android:padding="16dp">
         <ImageButton
             android:id="@+id/iBtnAddToCalendar"
             android:src="@drawable/ic_add_alert_black_24dp"
@@ -98,8 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="22dp"
-        android:layout_marginLeft="22dp"
+        android:padding="16dp"
         android:layout_gravity="right">
         <Button
             android:id="@+id/btnCancel"

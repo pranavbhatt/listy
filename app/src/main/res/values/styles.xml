@@ -5,8 +5,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
     </style>
     <style name="CustomDialog" parent="Base.V7.Theme.AppCompat.Light.Dialog">
         <item name="android:windowNoTitle">false</item>
+    </style>
+    <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.ActionButton.Overflow">
     </style>
 </resources>

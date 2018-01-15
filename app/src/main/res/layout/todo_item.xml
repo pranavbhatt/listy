@@ -2,58 +2,64 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
+    android:padding="4dp"
     android:orientation="horizontal"
     android:background="?android:attr/selectableItemBackground"
     android:focusable="true"
     android:clickable="true">
-    <RadioButton
-        android:id="@+id/cbStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="0.80"
-        android:paddingLeft="16dp">
-        <TextView
-            android:id="@+id/tvTaskDescription"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/cbStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task Description"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textSize="24sp"
-            android:paddingBottom="2dp"/>
+            android:checked="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:padding="2dp"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="2dp">
-        <ImageButton
-                android:id="@+id/iBtnPriority"
-                android:background="@android:color/transparent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="16dp"/>
-            <ImageButton
-                android:id="@+id/iBtnDateIcon"
-                android:background="@android:color/transparent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="16dp"/>
+            android:orientation="vertical"
+            android:layout_weight="0.80"
+            android:padding="2dp">
             <TextView
-                android:id="@+id/tvDueDate"
+                android:id="@+id/tvTaskDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Due Date"
-                android:textSize="16sp"/>
+                android:text="Task Description"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="24sp"
+                android:padding="2dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="2dp">
+                <ImageButton
+                    android:id="@+id/iBtnPriority"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="8dp"
+                    />
+                <ImageButton
+                    android:id="@+id/iBtnDateIcon"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="4dp"
+                    />
+                <TextView
+                    android:id="@+id/tvDueDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Due Date"
+                    android:textSize="16sp"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
