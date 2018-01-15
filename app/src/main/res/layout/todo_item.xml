@@ -25,15 +25,17 @@
             android:orientation="vertical"
             android:layout_weight="0.80"
             android:padding="2dp">
+
             <TextView
                 android:id="@+id/tvTaskDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Task Description"
                 android:ellipsize="end"
+                android:fontFamily="@font/roboto"
                 android:maxLines="1"
-                android:textSize="24sp"
-                android:padding="2dp"/>
+                android:padding="2dp"
+                android:text="Task Description"
+                android:textSize="22sp" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Due Date"
-                    android:textSize="16sp"/>
+                    android:textSize="14sp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
