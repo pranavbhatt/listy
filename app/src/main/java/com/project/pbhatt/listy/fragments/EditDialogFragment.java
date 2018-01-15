@@ -28,6 +28,7 @@ import com.project.pbhatt.listy.utils.DateUtil;
 
 import org.parceler.Parcels;
 
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -60,6 +61,7 @@ public class EditDialogFragment extends DialogFragment {
     private TextView etDueDate;
     private Boolean isEditDialog;
     private TodoItem mEditItem;
+    private DatePickerDialog datePickerDialog;
 
     public EditDialogFragment() {
     }
@@ -97,13 +99,13 @@ public class EditDialogFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mEditItem = Parcels.unwrap(getArguments().getParcelable("todoItem"));
-        // Fetch arguments from bundle and set title
         String title = getArguments().getString("title", "Task");
         getDialog().setTitle(title);
         setupView(view);
         if (mEditItem != null) {
-            setupEditScreen(mEditItem);
+            setupEditScreen();
         }
+        setupDatePickerDialog();
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -129,11 +131,11 @@ public class EditDialogFragment extends DialogFragment {
         );
     }
 
-    private void setupEditScreen(TodoItem item) {
-        mEditText.setText(item.getDescription());
+    private void setupEditScreen() {
+        mEditText.setText(mEditItem.getDescription());
         mEditText.setSelection(mEditText.getText().length());
-        etDueDate.setText(item.getFormattedDueDate());
-        mSpinner.setSelection(item.getPriority().getValue());
+        etDueDate.setText(mEditItem.getFormattedDueDate());
+        mSpinner.setSelection(mEditItem.getPriority().getValue());
     }
 
 
@@ -151,22 +153,23 @@ public class EditDialogFragment extends DialogFragment {
             fragementLayout.removeView(addCalendarLayout);
         }
         mEditText.requestFocus();
-        setupDatePickerDialog();
         setupSaveButton();
         setupSpinner();
     }
 
     private void setupDatePickerDialog() {
         final Calendar calendar = Calendar.getInstance();
+        if(mEditItem!=null && mEditItem.getDueDate()!=null){
+            calendar.setTime(mEditItem.getDueDate());
+        }
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
-        etDueDate.setHint("Choose due date");
+        etDueDate.setHint(R.string.choose_due_date);
+        datePickerDialog = new DatePickerDialog(getActivity(),
+                (DatePicker datePicker, int y, int m, int d) ->
+                        etDueDate.setText(DateUtil.getFormattedDate(y, m, d)), year, month, day);
         etDueDate.setOnClickListener((View view) -> {
-                    DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
-                            (DatePicker datePicker, int y, int m, int d) -> {
-                                etDueDate.setText(DateUtil.getFormattedDate(y, m, d));
-                            }, year, month, day);
                     datePickerDialog.show();
                 }
         );

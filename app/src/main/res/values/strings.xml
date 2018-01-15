@@ -5,6 +5,7 @@
     <string name="priority_prompt">Task Priority</string>
     <string name="sort_priority">Sort by priority</string>
     <string name="sort_due_date">Sort by due date</string>
+    <string name="choose_due_date">Choose a due date</string>
     <string-array name="priority_array">
         <item>NONE</item>
         <item>LOW</item>
