@@ -39,6 +39,7 @@ import com.project.pbhatt.listy.R;
 import com.project.pbhatt.listy.adapters.TodoItemsAdapter;
 import com.project.pbhatt.listy.models.TodoItem;
 import com.project.pbhatt.listy.utils.DateUtil;
+import com.project.pbhatt.listy.utils.ToastText;
 
 
 import java.util.Collections;
@@ -48,7 +49,6 @@ import java.util.List;
  * Created by pbhatt on 12/2/17.
  */
 public class TodoFragment extends Fragment implements EditDialogFragment.EditTodoItemListener {
-    protected static final int PERMISSIONS_REQUEST_READ_WRITE_CALENDER = 1;
     private static final String TAG = TodoFragment.class.getName();
     protected List<TodoItem> mTodoItems;
     protected View mRootView;
@@ -119,10 +119,11 @@ public class TodoFragment extends Fragment implements EditDialogFragment.EditTod
         int existingItemCount = mTodoItems.size();
         mTodoItem.save();
         mTodoItems.add(mTodoItem);
-        if(addToCalendar) {
+        if (addToCalendar) {
             addTaskToCalendar();
-        };
+        }
         mTodoItemsAdapter.notifyItemInserted(existingItemCount);
+        Toast.makeText(mContext, ToastText.TASK_CREATED, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -134,7 +135,7 @@ public class TodoFragment extends Fragment implements EditDialogFragment.EditTod
         calIntent.putExtra(CalendarContract.Events.TITLE, mTodoItem.getDescription());
         Calendar cal = Calendar.getInstance();
         calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, cal.getTime());
-        calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, cal.getTimeInMillis()+60*60);
+        calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, cal.getTimeInMillis() + 60 * 60);
         startActivity(calIntent);
     }
 
@@ -142,6 +143,7 @@ public class TodoFragment extends Fragment implements EditDialogFragment.EditTod
     public void onSaveEditItem() {
         mTodoItemsAdapter.notifyDataSetChanged();
         mCallback.onStatusChange();
+        Toast.makeText(mContext, ToastText.TASK_EDITED, Toast.LENGTH_SHORT).show();
     }
 
     @Override

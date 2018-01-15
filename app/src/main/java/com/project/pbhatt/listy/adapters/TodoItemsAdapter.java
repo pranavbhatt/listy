@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.project.pbhatt.listy.R;
 import com.project.pbhatt.listy.models.TodoItem;
+import com.project.pbhatt.listy.utils.ToastText;
 
 import java.util.List;
 
@@ -104,15 +105,15 @@ public class TodoItemsAdapter extends RecyclerView.Adapter<TodoItemsAdapter.View
                         String toastText = "";
                         if (todoItem.isComplete()) {
                             todoItem.setComplete(false);
-                            toastText = "Item moved to task list";
+                            toastText = ToastText.TASK_MOVED_BACK;
                         } else {
                             todoItem.setComplete(true);
-                            toastText = "Item moved to complete";
+                            toastText = ToastText.TASK_COMPLETE;
                         }
                         todoItem.save();
                         mTodoItems.remove(position);
                         notifyItemRemoved(position);
-                        Toast.makeText(mContext, toastText, Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, toastText, Toast.LENGTH_SHORT).show();
                         mCallback.onStatusChange();
                     }, 300);
         });
@@ -123,7 +124,7 @@ public class TodoItemsAdapter extends RecyclerView.Adapter<TodoItemsAdapter.View
         mTodoItems.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, mTodoItems.size());
-        Toast.makeText(mContext, "Item deleted successfully", Toast.LENGTH_LONG).show();
+        Toast.makeText(mContext, ToastText.TASK_DElETED, Toast.LENGTH_SHORT).show();
     }
 
 
