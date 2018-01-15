@@ -17,7 +17,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.project.pbhatt.listy.R;
@@ -30,7 +32,9 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import static com.project.pbhatt.listy.R.id.llAddCalendar;
 import static com.project.pbhatt.listy.R.id.spPriority;
+import static com.project.pbhatt.listy.R.id.swSaveCalender;
 
 
 public class EditDialogFragment extends DialogFragment {
@@ -50,6 +54,7 @@ public class EditDialogFragment extends DialogFragment {
 
     private EditText mEditText;
     private Button mSaveButton;
+    private Switch mCalendarSwitch;
     private Button mCancelButton;
     private Spinner mSpinner;
     private TextView etDueDate;
@@ -60,7 +65,7 @@ public class EditDialogFragment extends DialogFragment {
     }
 
     public interface EditTodoItemListener {
-        void onSaveNewItem(String taskDescription, String dueDate, String priority);
+        void onSaveNewItem(String taskDescription, String dueDate, String priority, Boolean addToCalendar);
 
         void onSaveEditItem();
     }
@@ -108,6 +113,7 @@ public class EditDialogFragment extends DialogFragment {
                     final String dueDate = etDueDate.getText().toString();
                     final String taskDescription = mEditText.getText().toString();
                     final String priority = mSpinner.getSelectedItem().toString();
+                    final Boolean addToCalender = mCalendarSwitch.isChecked();
 
                     if (isEditDialog) {
                         mEditItem.setDescription(taskDescription);
@@ -116,7 +122,7 @@ public class EditDialogFragment extends DialogFragment {
                         mEditItem.save();
                         listener.onSaveEditItem();
                     } else {
-                        listener.onSaveNewItem(taskDescription, dueDate, priority);
+                        listener.onSaveNewItem(taskDescription, dueDate, priority, addToCalender);
                     }
                     dismiss();
                 }
@@ -138,6 +144,12 @@ public class EditDialogFragment extends DialogFragment {
         mCancelButton.setOnClickListener((View v) -> dismiss());
         etDueDate = view.findViewById(R.id.etDueDate);
         mSpinner = view.findViewById(spPriority);
+        mCalendarSwitch = view.findViewById(swSaveCalender);
+        if (isEditDialog) {
+            LinearLayout fragementLayout = view.findViewById(R.id.fragment_dialog_todo_item);
+            LinearLayout addCalendarLayout = view.findViewById(llAddCalendar);
+            fragementLayout.removeView(addCalendarLayout);
+        }
         mEditText.requestFocus();
         setupDatePickerDialog();
         setupSaveButton();

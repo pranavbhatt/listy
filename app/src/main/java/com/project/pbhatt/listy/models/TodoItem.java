@@ -25,7 +25,7 @@ public class TodoItem extends BaseModel {
 
         private int value;
 
-        private Priority(int value){
+        Priority(int value){
             this.value = value;
         }
 

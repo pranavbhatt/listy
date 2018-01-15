@@ -1,23 +1,19 @@
 package com.project.pbhatt.listy.fragments;
 
-import android.Manifest;
-import android.content.ContentResolver;
-import android.content.ContentValues;
+
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.pm.PackageManager;
+import android.content.Intent;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.content.ContentResolver;
+
 
 import java.util.Calendar;
-import java.util.TimeZone;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.v4.app.Fragment;
@@ -36,8 +32,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
+
 
 import com.project.pbhatt.listy.R;
 import com.project.pbhatt.listy.adapters.TodoItemsAdapter;
@@ -114,7 +110,7 @@ public class TodoFragment extends Fragment implements EditDialogFragment.EditTod
     }
 
     @Override
-    public void onSaveNewItem(String taskDescription, String dueDate, String priority) {
+    public void onSaveNewItem(String taskDescription, String dueDate, String priority, Boolean addToCalendar) {
         mTodoItem = new TodoItem();
         mTodoItem.setDescription(taskDescription);
         mTodoItem.setPriority(priority);
@@ -123,7 +119,23 @@ public class TodoFragment extends Fragment implements EditDialogFragment.EditTod
         int existingItemCount = mTodoItems.size();
         mTodoItem.save();
         mTodoItems.add(mTodoItem);
+        if(addToCalendar) {
+            addTaskToCalendar();
+        };
         mTodoItemsAdapter.notifyItemInserted(existingItemCount);
+    }
+
+    /**
+     * Show the contacts in the ListView.
+     */
+    private void addTaskToCalendar() {
+        Intent calIntent = new Intent(Intent.ACTION_INSERT);
+        calIntent.setType("vnd.android.cursor.item/event");
+        calIntent.putExtra(CalendarContract.Events.TITLE, mTodoItem.getDescription());
+        Calendar cal = Calendar.getInstance();
+        calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, cal.getTime());
+        calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, cal.getTimeInMillis()+60*60);
+        startActivity(calIntent);
     }
 
     @Override
